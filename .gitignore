@@ -1,0 +1,8 @@
+*.env
+enviroments/*
+*.ipynb
+08cbc61a-df66-4a05-ad1e-2118d759db2b/*
+51ea44a2-fa4d-4e05-8119-42e12b6e865e/*
+79f91b98-53f2-4aad-a6fa-1d3586d207b7/*
+*.sqlite3
+*/__pycache__/*
