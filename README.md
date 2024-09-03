@@ -1,60 +1,59 @@
 # Super Analyst
 
-**Super Analyst** é uma aplicação avançada de conversão de texto para SQL, utilizando a poderosa combinação do framework Vanna.ai, o modelo de linguagem GPT-4 da OpenAI e o armazenamento vetorial ChromaDB. O projeto foi desenvolvido para permitir a geração de consultas SQL complexas a partir de perguntas em linguagem natural, proporcionando uma maneira intuitiva e eficiente de interagir com bancos de dados.
+**Super Analyst** Is an advanced text-to-SQL application using the powerful combination of the Vanna.ai framework, OpenAI's GPT-4 language model, and ChromaDB vector storage. The project was developed to allow the generation of complex SQL queries from natural language questions, providing an intuitive and efficient way to interact with databases.
 
 ## Índice
 
-- [Visão Geral](#visão-geral)
-- [Arquitetura](#arquitetura)
-- [Como Começar](#como-começar)
-- [Arquitetura e Decisões de Projeto](#arquitetura-e-decisões-de-projeto)
-- [Contribuição](#contribuição)
-- [Licença](#licença)
-- [Contato](#contato)
+- [Overview](#visão-geral)
+- [Architecture](#Architecture)
+- [Get Started](#gettind-started)
+- [Architectural Decision Records](#architectural-decision-records)
+- [Contribution](#contribution)
+- [Licence](#licence)
+- [Contact](#contact)
 
-## Visão Geral
+## Overview
 
-**Super Analyst** transforma consultas em linguagem natural em SQL de forma eficiente e precisa, utilizando:
+**Super Analyst** transforms natural language queries into SQL efficiently and accurately, using:
 
-- **Vanna.ai**: Framework para desenvolvimento de aplicativos de NLP (Processamento de Linguagem Natural).
-- **GPT-4 da OpenAI**: LLM (Modelo de Linguagem de Grande Escala) para entender e gerar consultas SQL.
-- **ChromaDB**: Armazenamento vetorial para gerenciar e recuperar embeddings de consulta.
-- **Python**: Linguagem de programação utilizada para a aplicação.
-- **Webapp da Vanna.ai**: Interface web para interação com o sistema.
+- **Vanna.ai**: Framework for developing NLP (Natural Language Processing) applications.
+- **GPT-4 da OpenAI**: LLM (Large Scale Language Model) to understand and generate SQL queries.
+- **ChromaDB**: Vector storage to manage and retrieve query embeddings.
+- **Python**: Programming language used for the application.
+- **Webapp da Vanna.ai**: Web interface for interacting with the system.
 
-O modelo foi treinado com uma vasta quantidade de consultas SQL e perguntas para aprimorar sua capacidade de entender e gerar SQL a partir de perguntas complexas.
+The model has been trained with a vast amount of SQL queries and questions to enhance its ability to understand and generate SQL from complex questions.
 
-## Arquitetura
+## Architecture
 
-O projeto é composto pelos seguintes componentes principais:
+The project is composed of the following main components:
 
-1. **Frontend**: Desenvolvido com o webapp da Vanna.ai, proporciona uma interface amigável para os usuários interagirem com o sistema.
+1. **Frontend**: Developed with the Vanna.ai webapp, it provides a friendly interface for users to interact with the system.
 2. **Backend**:
-   - **API**: Responsável por receber perguntas e retornar consultas SQL geradas.
-   - **Vanna.ai Framework**: Facilita a comunicação entre a interface e o modelo LLM.
-   - **GPT-4**: Modelo de linguagem que interpreta as perguntas e gera a consulta SQL correspondente.
-   - **ChromaDB**: Utilizado para armazenar e recuperar vetores de embeddings para consultas rápidas e precisas.
+   - **API**: Responsible for receiving questions and returning generated SQL queries.
+   - **Vanna.ai Framework**: Facilitates communication between the interface and the LLM model.
+   - **GPT-4**: Language model that interprets questions and generates the corresponding SQL query.
+   - **ChromaDB**: Used to store and retrieve embedding vectors for fast and accurate queries.
 
-## Como Começar
+## Gettind Started
 
-### Pré-requisitos
+### Prerequisites
 
 - Python 3.12.4
-- Dependências listadas no arquivo `requirements.txt`
-- Chave de API para GPT-4 da OpenAI
-- Conta e configuração do Vanna.ai
-- Configuração do ChromaDB
+- Dependencies listed in the file `requirements.txt`
+- OpenAI GPT-4 API Key
+- ChromaDB Configuration
 
-### Instalação
+### Instalation
 
-Clone o repositório:
+Clone the repository:
 
 ```bash
 git clone https://github.com/seuusuario/super-analyst.git
 cd super-analyst
 ```
 
-Na pasta enviroments da raiz, crie 3 arquivos ".env" para as configurações da aplicação com as seguintes variáveis abaixo:
+In the root environments folder, create 3 ".env" files for the application settings with the following variables below:
 
 - api-config.env
 ```bash
@@ -72,69 +71,61 @@ DB_PORT=your-database-port
 
 - user-config.env
 ```bash
-EMAIL="seuemail@seudominio.com"
-PASSWORD="SuaSenha"
+EMAIL="yourEmail@YourDomain.com"
+PASSWORD="YourPassword"
 ```
-Instale as dependências:
+Install the dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Execução
+### Running:
 
-Para iniciar o aplicativo, utilize o comando:
+To start the application, use the command:
 
 ```bash
 python main.py
 ```
 
-Se preferir rodar através de um docker, basta entrar na pasta raiz do repositório e utilizar o comando:
+If you prefer to run through Docker, just enter the repository root folder and run the command:
 
 ```bash
 docker run -d -p 8084:8084 --name super-analyst superanalyst
 ```
 
-Acesse o webapp através do navegador na URL http://localhost:8084, faça login com o usuário e senha de teste que você configurou em user-config.env e teste a aplicação.
+Access the webapp through the browser at the URL http://localhost:8084, log in with the test username and password that you configured in user-config.env and test the application.
 
-## Arquitetura e Decisões de Projeto
+## Architectural Decision Records
 
-### Arquitetura Geral
+### Architectural Decision Record (ADR)
 
-1. **Frontend**: Utilizado o WebApp da Vanna.ai que oferece uma experiência de usuário fluida e intuitiva.
-2. **Backend**:
-   - **Vanna.ai Framework**: Facilita o processamento de NLP e a interação com o modelo GPT-4.
-   - **GPT-4**: Treinado para gerar SQL a partir de linguagem natural.
-   - **ChromaDB**: Fornece armazenamento e recuperação eficiente de embeddings.
+**ADR 001: Choice of Language Model**
+- **Decision**: Use GPT-4 from OpenAI.
+- **Justification**: GPT-4 offers superior text comprehension and generation capabilities compared to previous versions and other available models.
 
-#### Architectural Decision Record (ADR)
+**ADR 002: Vector Storage**
+- **Decision**: Adopt ChromaDB.
+- **Justification**: ChromaDB was chosen for its performance in embedding storage and retrieval operations.
 
-**ADR 001: Escolha do Modelo de Linguagem**
-- **Decisão**: Utilizar GPT-4 da OpenAI.
-- **Justificativa**: GPT-4 oferece capacidade superior de compreensão e geração de texto em comparação com versões anteriores e outros modelos disponíveis.
+**ADR 003: NLP Framework**
+- **Decision**: Choose Vanna.ai.
+- **Justification**: Vanna.ai provides a robust framework for integrating language models and developing NLP applications.
 
-**ADR 002: Armazenamento Vetorial**
-- **Decisão**: Adotar ChromaDB.
-- **Justificativa**: ChromaDB foi escolhido por sua performance em operações de armazenamento e recuperação de embeddings.
+## Contribution
 
-**ADR 003: Framework de NLP**
-- **Decisão**: Optar pelo Vanna.ai.
-- **Justificativa**: O Vanna.ai fornece um framework robusto para a integração de modelos de linguagem e desenvolvimento de aplicativos NLP.
+Contributions are welcome! To collaborate with the project, follow these steps:
 
-## Contribuição
+1. Fork the repository.
+2. Create a branch for your feature (`git checkout -b feature/novafeature`).
+3. Commit your changes (`git commit -am 'Add new feature'`).
+4. Push to the repository (`git push origin feature/novafeature`).
+5. Create a Pull Request.
 
-Contribuições são bem-vindas! Para colaborar com o projeto, siga estes passos:
+## Contact
 
-1. Faça um fork do repositório.
-2. Crie uma branch para sua feature (`git checkout -b feature/novafeature`).
-3. Faça commit das suas alterações (`git commit -am 'Adiciona nova feature'`).
-4. Envie para o repositório (`git push origin feature/novafeature`).
-5. Crie um Pull Request.
-
-## Contato
-
-Para dúvidas ou sugestões, entre em contato através de [rpdesenvolvimento92@gmail.com](mailto:rpdesenvolvimento92@gmail.com).
+For questions or suggestions, please contact [rpdesenvolvimento92@gmail.com](mailto:rpdesenvolvimento92@gmail.com).
 
 ---
 
-Sinta-se à vontade para ajustar ou expandir as seções conforme necessário para se adequar às suas necessidades específicas!
+Feel free to adjust or expand the sections as needed to fit your specific needs!
